@@ -1,0 +1,28 @@
+---
+- name: Deploy WAR to Tomcat
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Ensure Tomcat is installed
+      apt:
+        name: tomcat9
+        state: present
+        update_cache: yes
+
+    - name: Stop Tomcat
+      service:
+        name: tomcat9
+        state: stopped
+      ignore_errors: yes
+
+    - name: Copy WAR to Tomcat
+      copy:
+        src: "{{ war_src }}"
+        dest: /var/lib/tomcat9/webapps/app.war
+        mode: '0644'
+
+    - name: Start Tomcat
+      service:
+        name: tomcat9
+        state: started
