@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         // Application Node IP added here
-        string(name: 'APP_HOST', defaultValue: '3.123.45.67', description: 'Public IP of app node')
+        string(name: 'APP_HOST', defaultValue: '13.48.190.155', description: 'Public IP of app node')
     }
 
     environment {
